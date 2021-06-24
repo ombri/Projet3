@@ -1,0 +1,67 @@
+{% extends 'app1/base-connected.html' %}
+
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"0>
+    </head>
+
+
+<style type="text/css">
+    .grey--line {
+        -webkit-box-shadow: inset 0 -0.2em 0 #00d700;
+        box-shadow: inset 0 -0.2em 0 rgba(211,211,211,1);
+    }
+</style>
+
+<body>
+
+{% block content %}
+
+<div class="jumbotron"; style="background-image: url('http://pm1.narvii.com/6734/16e2eb228be57e0f7a8cfe4c3ad3eac24c1e0506_00.jpg'); background-repeat: no-repeat;
+  background-attachment: fixed; background-size: cover;">
+
+
+    <div class="container-fluid p-4">
+    <div class="row">
+        <div class="col text-uppercase text-center">Current posts in this forum: {{ count }}</div>
+    </div>
+    </div>
+
+{%for forum in forums %}
+
+<div class="container p-4 border">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-6"><h4 class="grey--line text-center">@{{ forum.author }}</h4></div>
+            <div class="col-6"><h4 class="grey--line text-center">Topic : {{ forum.topic }}</h4></div>
+            </div>
+<hr>
+            <div class="text-center">{{ forum.content }}</div>
+
+<hr>
+
+
+{%for discuss in discussions%}
+    {%for objs in discuss%}
+        {% if objs.forum == forum %}
+        {{objs.discuss}}
+<br>
+        {% endif %}
+    {%endfor%}
+{%endfor%}
+
+</div>
+</div>
+</div>
+<br>
+</body>
+</html>
+
+{%endfor%}
+{% endblock %}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+{% block content %}
+
+  {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+
+{% endblock %}
+
+<div class="jumbotron"; style="background-image: url('https://www.wallpaperuse.com/wallp/61-619234_m.jpg'); background-repeat: no-repeat;
+  background-attachment: fixed; background-size: cover;">
+
+
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col-8">
+      <div><a href="http://127.0.0.1:8000/" class="btn btn-dark" role="button" >Accueil</a></div> </br>
+    <form method="post">
+        {% csrf_token %}
+        <div class="from-row ">
+            <div class="col was-validated">
+                <label for="check_username">Username:</label>
+                <input type="text" class="form-control" id="check_username" placeholder="Enter username" name="check_username" maxlength=50  required>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="col was-validated">
+                <label for="check_password">Password:</label>
+                <input type="password" class="form-control pwd" id="check_password" placeholder="Enter password" name="check_password" maxlength=50  required>
+                <div class="invalid-feedback">Please fill out this field.</div>
+                <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+            </div>
+        </div>
+
+        </br>
+        <div><input type="submit" value="Confirmer"></div>
+</form>
+    </div>
+    <div class="col-4">
+      <img class="img-fluid rounded-circle" src="https://wallpapercave.com/wp/wp8850121.jpg">
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+    $(".reveal").on('click',function() {
+    var $pwd = $(".pwd");
+    if ($pwd.attr('type') === 'password') {
+        $pwd.attr('type', 'text');
+    } else {
+        $pwd.attr('type', 'password');
+    }
+});
+</script>
+
+
+
+</body>
+</html>
+
+

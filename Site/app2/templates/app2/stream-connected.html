@@ -1,0 +1,22 @@
+{% extends 'app1/base-connected.html' %}
+
+{% block title %}
+streaming page - disconnected
+{% endblock %}
+
+{% block content %}
+
+<div class="container p-3">
+<div class="text-center text-uppercase">episode {{ ep }} – {{ title }}</div>
+</div>
+
+<div class="embed-responsive embed-responsive-16by9">
+<iframe src={{ link }} frameborder="0" width="640px" height="360px" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br/>
+</div>
+
+
+<!--<iframe src={{ link }} frameborder="0" width="640px" height="360px" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br/>-->
+<!--<video preload="auto" controls="true" src={{ link }} type="video/mp4" poster="/im_ep/one/2.jpg" autoplay=""></video>-->
+
+{% endblock %}
+

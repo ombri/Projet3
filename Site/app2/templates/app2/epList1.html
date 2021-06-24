@@ -1,0 +1,43 @@
+{% extends 'app1/base.html' %}
+
+{% block title %}
+episodes list - disconnected
+{% endblock %}
+
+{% block background %}
+<div style="background-image: url('https://i.ytimg.com/vi/-4CiLvDjUBw/maxresdefault.jpg'); background-repeat: no-repeat;
+  background-attachment: fixed; background-size: cover;"/>
+{% endblock %}
+
+{% block content %}
+
+
+
+<h1>Liste des épisodes de One Piece</h1>
+
+</br>
+
+<ul class="pagination justify-content-center">
+    <li class="page-item active"><a class="page-link" href="http://127.0.0.1:8000/app2/episodes/1">101-200</a></li>
+    <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/app2/episodes/2">201-300</a></li>
+    <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/app2/episodes/3">301-400</a></li>
+    <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/app2/episodes/4">401-500</a></li>
+    <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/app2/episodes/5">501-600</a></li>
+    <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/app2/episodes/6">601-700</a></li>
+    <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/app2/episodes/7">701-800</a></li>
+    <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/app2/episodes/8">801-900</a></li>
+    <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/app2/episodes/9">901+</a></li>
+</ul>
+
+</br>
+
+{% for id, link, title in ep_l %}
+
+  <p>
+    <a	href="http://127.0.0.1:8000/app2/stream/{{id}}	">Episode {{id}} : {{ title }}	</a>	</br>
+  </p>
+{% endfor %}
+
+
+</br>
+{% endblock %}

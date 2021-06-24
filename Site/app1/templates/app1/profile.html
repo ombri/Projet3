@@ -1,0 +1,155 @@
+{% extends 'app1/base-connected.html' %}
+
+{% block title %}
+Profile page
+{% endblock %}
+
+{% block content %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<div class="jumbotron" style="background-image: url('https://wallpaperaccess.com/full/273606.jpg'); background-repeat: no-repeat;
+  background-attachment: fixed; background-size: cover;>
+<div "/>
+
+
+</br></br></br>
+
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <form method="post">
+        {% csrf_token %}
+          <div class="row">
+            <div class="col-6">
+                <label for="F_Fname">First Name:</label>
+                <input type="text" class="form-control" id="F_Fname" placeholder="Enter first name" name="F_Fname" maxlength=50  required disabled value={{Fname}}>
+            </div>
+            <div class="col-6">
+                <label for="F_Lname">Last Name:</label>
+                <input type="text" class="form-control" id="F_Lname" placeholder="Enter last name" name="F_Lname"  maxlength=50  required disabled value={{Lname}}>
+            </div>
+            <div class="col-12">
+                <label for="F_email">Email:</label>
+              <input type="email" class="form-control" id="F_email" placeholder="Enter email" name="F_email" maxlength=50  required disabled value={{email}}>
+            </div>
+          </div>
+
+          </br></br>
+
+          <div class="row-6 was-validated ">
+              <label for="F_username">Username:</label>
+              <input type="text" class="form-control" id="F_username" placeholder="Enter username" name="F_username" value={{username}} maxlength=50  required disabled>
+              <div class="invalid-feedback">Please fill out this field.</div>
+          </div>
+
+          <div class="row was-validated">
+            <div class="col-6">
+              <label for="F_password">Password:</label>
+              <input type="password" class="form-control pwd" id="F_password" placeholder="Enter password" name="F_password" maxlength=50  required disabled>
+                <div class="invalid-feedback">Please fill out this field.</div>
+                <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+            </div>
+            <div class="col-6">
+                <label class="invisible" for="conf_password">Conf_Password</label>
+                <input type="password" class="form-control pwd" id="conf_password" placeholder="confirm password" name="conf_password"  maxlength=50  required disabled>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+
+          </div>
+
+        </br>
+
+        <div><input type="submit" id ="change" value="Save change" disabled></div>
+        </br>
+        <div><input type="checkbox" id="changeChkbx"> change your informations</input></div>
+    </form>
+
+  </div>
+</div>
+
+<div>
+<!--    <div><input type="checkbox" id="deleteChkbx"> delete your profile</input></div>-->
+    <a href="http://127.0.0.1:8000/delete" id="delete" class="btn btn-outline-secondary" role="button">delete user</a>
+</div>
+</form>
+
+
+
+{%for forum in forum %}
+
+<div class="container p-4 border">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-10"><h4 class="grey--line text-center">Topic : {{ forum.topic }}</h4></div>
+            <div class="col-2"><a href="http://127.0.0.1:8000/delete/{{forum.topic}}" class="btn btn-outline-alert" role="button">Delete</a></div>
+            </div>
+<hr>
+            <div class="text-center">{{ forum.content }}</div>
+
+<hr>
+
+
+{%for discuss in discussions%}
+    {%for objs in discuss%}
+        {% if objs.forum == forum %}
+        {{objs.discuss}}
+<br>
+        {% endif %}
+    {%endfor%}
+{%endfor%}
+
+        {%endfor%}
+
+</div>
+</div>
+
+
+
+<script>
+    $(".reveal").on('click',function() {
+    var $pwd = $(".pwd");
+    if ($pwd.attr('type') === 'password') {
+        $pwd.attr('type', 'text');
+    } else {
+        $pwd.attr('type', 'password');
+    }
+});
+</script>
+
+<script>
+let chkBoxChange = document.getElementById("changeChkbx");
+let chkBoxDelete = document.getElementById("deleteChkbx")
+
+chkBoxChange.addEventListener("click", function() {
+  if(this.checked == true) {
+    document.getElementById("F_Fname").disabled = false;
+    document.getElementById("F_Lname").disabled = false;
+    document.getElementById("F_email").disabled = false;
+    document.getElementById("F_username").disabled = false;
+    document.getElementById("F_password").disabled = false;
+    document.getElementById("conf_password").disabled = false;
+    document.getElementById("change").disabled = false;
+  } else {
+    document.getElementById("F_Fname").disabled = true;
+    document.getElementById("F_Lname").disabled = true;
+    document.getElementById("F_email").disabled = true;
+    document.getElementById("F_username").disabled = true;
+    document.getElementById("F_password").disabled = true;
+    document.getElementById("conf_password").disabled = true;
+    document.getElementById("change").disabled = true;
+
+  }
+});
+
+chkBoxChange.addEventListener("click", function() {
+  if(this.checked == true) {
+    document.getElementById("delete").disabled = false;
+  } else {
+    document.getElementById("delete").disabled = true;
+  }
+});
+</script>
+
+{% endblock %}
